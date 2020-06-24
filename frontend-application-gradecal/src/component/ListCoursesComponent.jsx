@@ -8,6 +8,10 @@ class ListCoursesComponent extends Component{
 
     constructor(props) {
         super(props)
+        this.state = {
+            courses: [],
+            message: null
+        }
         this.refreshCourses = this.refreshCourses.bind(this)
     }
 
@@ -20,6 +24,7 @@ class ListCoursesComponent extends Component{
             .then(
                 response => {
                     console.log(response);
+                    this.setState({ courses: response.data })
                 }
             )
     }
