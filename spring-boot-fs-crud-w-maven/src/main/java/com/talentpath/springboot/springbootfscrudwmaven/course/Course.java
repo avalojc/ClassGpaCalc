@@ -51,5 +51,44 @@ public class Course {
         this.description = description;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((description == null) ? 0 : description.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((courseName == null) ? 0 : courseName.hashCode());
+        result = prime * result + ((courseCode == null) ? 0 : courseCode.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (getClass() != obj.getClass()) return false;
+        Course other = (Course) obj;
+        // description comparison
+        if (description == null) {
+            if (other.description != null) return false;
+        }
+        else if (!description.equals(other.description)) return false;
+        // id comparison
+        if (id == null) {
+            if (other.id != null) return false;
+        }
+        else if (!id.equals(other.id)) return false;
+        // courseCode comparison
+        if (courseCode == null) {
+            if (other.courseCode != null) return false;
+        }
+        else if (!courseCode.equals(other.courseCode)) return false;
+        // courseName comparison
+        if (courseName == null) {
+            if (other.courseName != null) return false;
+        }
+        else if (!courseName.equals(other.courseName)) return false;
+        return true;
+    }
 
 }
