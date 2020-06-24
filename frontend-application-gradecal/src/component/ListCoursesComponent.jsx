@@ -8,7 +8,7 @@ class ListCoursesComponent extends Component{
 
     constructor(props) {
         super(props)
-        this.state = {
+                this.state = {
             courses: [],
             message: null
         }
@@ -38,14 +38,23 @@ class ListCoursesComponent extends Component{
                         <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>Course Name</th>
+                                <th>Course Code</th>
                                 <th>Description</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>#Value</td>
-                                <td>#Description</td>
-                            </tr>
+                        {
+                                this.state.courses.map(
+                                    course =>
+                                        <tr key={course.id}>
+                                            <td>{course.id}</td>
+                                            <td>{course.courseName}</td>
+                                            <td>{course.courseCode}</td>
+                                            <td>{course.description}</td>
+                                        </tr>
+                                )
+                            }
                         </tbody>
                     </table>
                 </div>
