@@ -29,6 +29,16 @@ class ListCoursesComponent extends Component{
             )
     }
 
+    deleteCourseClicked(id) {
+        CourseDataService.deleteCourse(STUDENT, id)
+            .then(
+                response => {
+                    this.setState({ message: `Delete of course ${id} Successful` })
+                    this.refreshCourses()
+                }
+            )
+    }
+
     render() {
         return(
             <div className="courseList container">
@@ -52,6 +62,7 @@ class ListCoursesComponent extends Component{
                                             <td>{course.courseName}</td>
                                             <td>{course.courseCode}</td>
                                             <td>{course.description}</td>
+                                            <td><button className="btn btn-warning" onClick={() => this.deleteCourseClicked(course.id)}>Delete</button></td>
                                         </tr>
                                 )
                             }
