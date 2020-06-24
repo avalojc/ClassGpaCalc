@@ -1,5 +1,6 @@
 package com.talentpath.springboot.springbootfscrudwmaven.course;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @CrossOrigin(origins = { "http://localhost:3000", "http://localhost:4200" })
 @RestController
@@ -37,7 +39,7 @@ public class CourseResource {
 
         return ResponseEntity.notFound().build();
     }
-    @PutMapping("/instructors/{username}/courses/{id}")
+    @PutMapping("/student/{username}/courses/{id}")
     public ResponseEntity<Course> updateCourse(@PathVariable String username, @PathVariable long id,
                                                @RequestBody Course course) {
 
@@ -46,7 +48,7 @@ public class CourseResource {
         return new ResponseEntity<Course>(course, HttpStatus.OK);
     }
 
-    @PostMapping("/instructors/{username}/courses")
+    @PostMapping("/student/{username}/courses")
     public ResponseEntity<Void> createCourse(@PathVariable String username, @RequestBody Course course) {
 
         Course createdCourse = courseManagementService.save(course);
