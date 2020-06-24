@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CourseService {
+public class CoursesService {
 
     private static List<Course> courses = new ArrayList<>();
     private static long idCounter = 0;
