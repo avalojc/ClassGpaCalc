@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ListCoursesComponent from './ListCoursesComponent';
 import CourseComponent from './CourseComponent';
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 class StudentApp extends Component {
     render() {
@@ -9,8 +10,8 @@ class StudentApp extends Component {
                 <h1>Student Application</h1>
                 <Switch>
                     <Route path="/" exact component={ListCoursesComponent} />
-                    <Route path="/course" exact component={ListCoursesComponent} />
-                    <Route path="/course/:id" component={CourseComponent}/>
+                    <Route path="/courses" exact component={ListCoursesComponent} />
+                    <Route path="/courses/:id" component={CourseComponent}/>
                 </Switch>
             </Router>
         )

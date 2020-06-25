@@ -12,10 +12,10 @@ public class CoursesService {
     private static long idCounter = 0;
 
     static { // hardcoded courses
-        courses.add(new Course(++idCounter, "Biology 101", "BIOL101", "First Semester Introductory Course to Biology"));
-        courses.add(new Course(++idCounter, "Chemistry 102", "CHEM102", "Second Semester Introductory Course to Chemistry"));
-        courses.add(new Course(++idCounter, "English 101", "ENGL101", "First Semester Introductory Course to English"));
-        courses.add(new Course(++idCounter, "Calculus 101", "MATH301", "First Semester Introductory Course to Calculus"));
+        courses.add(new Course(++idCounter, "Biology 101", "BIOL101", "First Semester Introductory Course to Biology", 92L));
+        courses.add(new Course(++idCounter, "Chemistry 102", "CHEM102", "Second Semester Introductory Course to Chemistry", 87L));
+        courses.add(new Course(++idCounter, "English 101", "ENGL101", "First Semester Introductory Course to English", 85L));
+        courses.add(new Course(++idCounter, "Calculus 101", "MATH301", "First Semester Introductory Course to Calculus", 79L));
     }
 
     public List<Course> findAll() { //Show all courses

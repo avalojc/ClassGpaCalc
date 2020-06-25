@@ -5,18 +5,20 @@ public class Course {
     private String courseName;
     private String courseCode;
     private String description;
+    private Long grade;
 
     public Course(){
 
     }
 
 
-    public Course (long id, String courseName, String courseCode, String description){
+    public Course (long id, String courseName, String courseCode, String description, Long grade){
         super();
         this.id = id;
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.description = description;
+        this.grade = grade;
     }
 
     public Long getId() {
@@ -51,6 +53,14 @@ public class Course {
         this.description = description;
     }
 
+    public Long getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Long grade) {
+        this.grade = grade;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -59,6 +69,7 @@ public class Course {
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((courseName == null) ? 0 : courseName.hashCode());
         result = prime * result + ((courseCode == null) ? 0 : courseCode.hashCode());
+        result = prime * result + ((grade == null) ? 0 : grade.hashCode());
         return result;
     }
 
@@ -83,6 +94,11 @@ public class Course {
             if (other.courseCode != null) return false;
         }
         else if (!courseCode.equals(other.courseCode)) return false;
+        // courseGrade comparison
+        if (grade == null) {
+            if (other.grade != null) return false;
+        }
+        else if (!grade.equals(other.grade)) return false;
         // courseName comparison
         if (courseName == null) {
             if (other.courseName != null) return false;
