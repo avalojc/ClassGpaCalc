@@ -58,14 +58,20 @@ class ListCoursesComponent extends Component{
         // console.log(object.grade)
         if(grade>=90){
             letterGrade="A"
+        }else if(grade>=87){
+            letterGrade="B+"
         }else if(grade>=80){
             letterGrade="B"
+        }else if(grade>=77){
+            letterGrade="C+"
         }else if(grade>=70){
             letterGrade="C"
+        }else if(grade>=67){
+            letterGrade="D+"
         }else if(grade>=60){
             letterGrade="D"
         }else if(grade<60&&grade>0){
-            letterGrade="F"
+            letterGrade=0
         }else{
             letterGrade="Grade not submitted"
         }
@@ -76,15 +82,21 @@ class ListCoursesComponent extends Component{
             let GPA = null
             let grade = object.grade
             if(grade>=90){
-                GPA="4.0"
+                GPA="4"
+            }else if(grade>=87){
+                GPA="3.5"
             }else if(grade>=80){
-                GPA="3.0"
+                GPA="3"
+            }else if(grade>=77){
+                GPA="2.5"
             }else if(grade>=70){
-                GPA="2.0"
+                GPA="2"
+            }else if(grade>=67){
+                GPA="1.5"
             }else if(grade>=60){
-                GPA="1.0"
+                GPA="1"
             }else if(grade<60&&grade>0){
-                GPA="0.0"
+                GPA="0"
             }else{
                 GPA="Grade not submitted"
             }
@@ -98,15 +110,20 @@ class ListCoursesComponent extends Component{
         
             for(let i=0; i < this.state.courses.length; i++){
                 // this.state.courses[i]
-                console.log(this.state.courses[i].grade)
             let grade = this.state.courses[i].grade
 
             if(grade>=90){
                 GPA=4
+            }else if(grade>=87){
+                GPA=3.5
             }else if(grade>=80){
                 GPA=3
+            }else if(grade>=77){
+                GPA=2.5
             }else if(grade>=70){
                 GPA=2
+            }else if(grade>=67){
+                GPA=1.5
             }else if(grade>=60){
                 GPA=1
             }else if(grade<60&&grade>0){
@@ -116,22 +133,49 @@ class ListCoursesComponent extends Component{
             }
             return (pointIncr)
         }
-        setPointInc(){
-            let result = this.gpaForPoints()
-            this.setState({pointsIncrementer: result})
-        }
-        
 
+        calculate(){
+            let pointIncr = 0
+            let hoursAttempted = 0
+            let GPA = 0
         
+            for(let i=0; i < this.state.courses.length; i++){
+                // this.state.courses[i]
+                console.log(this.state.courses[i].grade)
+            let grade = this.state.courses[i].grade
+
+            if(grade>=90){
+                GPA=4
+            }else if(grade>=87){
+                GPA=3.5
+            }else if(grade>=80){
+                GPA=3
+            }else if(grade>=77){
+                GPA=2.5
+            }else if(grade>=70){
+                GPA=2
+            }else if(grade>=67){
+                GPA=3
+            }else if(grade>=60){
+                GPA=1
+            }else if(grade<60&&grade>0){
+                GPA=0
+            }
+            pointIncr = pointIncr + GPA
+            hoursAttempted = hoursAttempted + 3
+            }
+            console.log("points"+pointIncr)
+            console.log("hours"+hoursAttempted)
+            return (((pointIncr*3)/(hoursAttempted)).toFixed(3))
+        }
 
     render() {
         
         return(
             <div className="courseList container">
-                {this.setPointInc()}
                 <h3>All Courses</h3>
                 <div className="container">
-                    <table className="table">
+                    <table className="table container">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -157,19 +201,22 @@ class ListCoursesComponent extends Component{
                                             <td>{course.description}</td>
                                             <td>{this.convertScoreToLetter(course)}</td>
                                             <td>{this.gpaValue(course)}</td>
-                                            <td>{course.grade}</td>
+                                            <td>3 hours</td>
                                             <td>{course.grade}</td>
                                             <td><button className="btn btn-success" onClick={() => this.updateCourseClicked(course.id)}>Update</button></td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteCourseClicked(course.id)}>Delete</button></td>
-                                            
                                         </tr>
                                 )
                             }
+                            
                         </tbody>
+
                     </table>
-                    
+                    <div className="gpaRow">
+                        <div>Calc GPA: {this.calculate()}</div>
+                    </div>
                     <div className="row">
-                        <button className="btn btn-success" onClick={this.addCourseClicked}>Add</button>
+                        <button className="btn btn-success" onClick={this.addCourseClicked} id="addButton">Add</button>
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ class StudentApp extends Component {
     render() {
         return (
             <Router>
-                <h1>Student Application</h1>
+                <h1>GPA Application</h1>
                 <Switch>
                     <Route path="/" exact component={ListCoursesComponent} />
                     <Route path="/courses" exact component={ListCoursesComponent} />

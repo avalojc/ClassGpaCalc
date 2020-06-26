@@ -83,56 +83,59 @@ class CourseComponent extends Component {
         return (
             <div>
                 <h3>Course</h3>
-                <div>id: {id}</div>
-                <div>Description: {description}</div>
-                <div>Course Code: {courseCode}</div>
-                <div>Course Name: {courseName}</div>
-                <div>Grade: {grade}</div>
-                <div className="container">
-                    <Formik initialValues={{ id, courseCode, courseName, description, grade }} enableReinitialize
-                            validateOnChange={false}
-                            validateOnBlur={false}
-                            onSubmit ={this.onSubmit}
-                            validate={this.validate}
-                    >         
-                        {                       //id name code
-                            (props) => (
-                                <Form>
-                                    <fieldset className="form-group">
-                                        <label>Id</label>
-                                        <Field className="form-control" type="text" name="id" disabled />
-                                    </fieldset>
+                    <div className="formSpace container">
+                            <div className="infoBar container" >
+                                <div>id: {id}</div>
+                                <div>Description: {description}</div>
+                                <div>Course Code: {courseCode}</div>
+                                <div>Course Name: {courseName}</div>
+                                <div>Grade: {grade}</div>
+                            </div>
+                            <div className="container">
+                                <Formik initialValues={{ id, courseCode, courseName, description, grade }} enableReinitialize
+                                        validateOnChange={false}
+                                        validateOnBlur={false}
+                                        onSubmit ={this.onSubmit}
+                                        validate={this.validate}
+                                >         
+                                    {                       //id name code
+                                        (props) => (
+                                            <Form>
+                                                <fieldset className="form-group">
+                                                    <label>Id</label>
+                                                    <Field className="form-control" type="text" name="id" disabled />
+                                                </fieldset>
 
-                                    <fieldset className="form-group">
-                                        <label>Course Code</label>
-                                        <Field className="form-control" type="text" name="courseCode" />
-                                    </fieldset>
+                                                <fieldset className="form-group">
+                                                    <label>Course Code</label>
+                                                    <Field className="form-control" type="text" name="courseCode" />
+                                                </fieldset>
 
-                                    <fieldset className="form-group">
-                                        <label>Course Name</label>
-                                        <Field className="form-control" type="text" name="courseName" />
-                                    </fieldset>
+                                                <fieldset className="form-group">
+                                                    <label>Course Name</label>
+                                                    <Field className="form-control" type="text" name="courseName" />
+                                                </fieldset>
 
-                                    <fieldset className="form-group">
-                                        <label>Description</label>
-                                        <Field className="form-control" type="text" name="description" />
-                                    </fieldset>
+                                                <fieldset className="form-group">
+                                                    <label>Description</label>
+                                                    <Field className="form-control" type="text" name="description" />
+                                                </fieldset>
 
-                                    <fieldset className="form-group">
-                                        <label>Grade</label>
-                                        <Field className="form-control" type="text" name="grade" />
-                                    </fieldset>
+                                                <fieldset className="form-group">
+                                                    <label>Grade</label>
+                                                    <Field className="form-control" type="text" name="grade" />
+                                                </fieldset>
 
-                                    <ErrorMessage name="description" component="div" className="alert alert-warning" />
-                                    <ErrorMessage name="grade" component="div" className="alert alert-warning" />
+                                                <ErrorMessage name="description" component="div" className="alert alert-warning" />
+                                                <ErrorMessage name="grade" component="div" className="alert alert-warning" />
 
-                                    <button className="btn btn-success" type="submit">Save</button>
-                                </Form>
-                            )
-                        }
-                    </Formik>
-    
-                </div>
+                                                <button className="btn btn-success" type="submit">Save</button>
+                                            </Form>
+                                        )
+                                    }
+                                </Formik>
+                            </div>
+                    </div>
             </div>
         )
     }
