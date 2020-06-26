@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Muli:wght@300&display=swap');
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -50,7 +53,23 @@ table {
 .App {
   text-align: center;
 }
-
-
+body {
+	font-family: 'Muli', sans-serif;
+}
+H1 {
+	font-size: 2em;
+}
+H3 {
+	font-size: 1.5em;
+}
+th {
+	font-size: 1.1em;
+	font-weight: 700;
+}
+H1, H3, th {
+	margin: 3px;
+}
 
 @import url(https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css)
+
+

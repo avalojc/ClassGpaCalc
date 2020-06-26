@@ -8,9 +8,10 @@ class ListCoursesComponent extends Component{
 
     constructor(props) {
         super(props)
-                this.state = {
+            this.state = {
             courses: [],
-            message: null
+            message: null,
+            pointsIncrementer: 0
         }
         this.refreshCourses = this.refreshCourses.bind(this)
         this.updateCourseClicked = this.updateCourseClicked.bind(this)
@@ -30,6 +31,7 @@ class ListCoursesComponent extends Component{
                 }
             )
     }
+
 
     deleteCourseClicked(id) {
         CourseDataService.deleteCourse(STUDENT, id)
@@ -62,7 +64,7 @@ class ListCoursesComponent extends Component{
             letterGrade="C"
         }else if(grade>=60){
             letterGrade="D"
-        }else if(grade<60){
+        }else if(grade<60&&grade>0){
             letterGrade="F"
         }else{
             letterGrade="Grade not submitted"
@@ -73,7 +75,6 @@ class ListCoursesComponent extends Component{
         gpaValue(object){
             let GPA = null
             let grade = object.grade
-            // console.log(object.grade)
             if(grade>=90){
                 GPA="4.0"
             }else if(grade>=80){
@@ -82,7 +83,7 @@ class ListCoursesComponent extends Component{
                 GPA="2.0"
             }else if(grade>=60){
                 GPA="1.0"
-            }else if(grade<60){
+            }else if(grade<60&&grade>0){
                 GPA="0.0"
             }else{
                 GPA="Grade not submitted"
@@ -90,9 +91,44 @@ class ListCoursesComponent extends Component{
             return GPA
             }
 
+        gpaForPoints=()=>{
+            // this.setState({pointsIncrementer:0})
+            let pointIncr = 0
+            let GPA = 0
+        
+            for(let i=0; i < this.state.courses.length; i++){
+                // this.state.courses[i]
+                console.log(this.state.courses[i].grade)
+            let grade = this.state.courses[i].grade
+
+            if(grade>=90){
+                GPA=4
+            }else if(grade>=80){
+                GPA=3
+            }else if(grade>=70){
+                GPA=2
+            }else if(grade>=60){
+                GPA=1
+            }else if(grade<60&&grade>0){
+                GPA=0
+            }
+            pointIncr = pointIncr + GPA
+            }
+            return (pointIncr)
+        }
+        setPointInc(){
+            let result = this.gpaForPoints()
+            this.setState({pointsIncrementer: result})
+        }
+        
+
+        
+
     render() {
+        
         return(
             <div className="courseList container">
+                {this.setPointInc()}
                 <h3>All Courses</h3>
                 <div className="container">
                     <table className="table">
@@ -114,7 +150,7 @@ class ListCoursesComponent extends Component{
                         {
                                 this.state.courses.map(
                                     course =>
-                                        <tr key={course.id}>
+                                        <tr key={course.id}> 
                                             <td>{course.id}</td>
                                             <td>{course.courseName}</td>
                                             <td>{course.courseCode}</td>
@@ -125,11 +161,13 @@ class ListCoursesComponent extends Component{
                                             <td>{course.grade}</td>
                                             <td><button className="btn btn-success" onClick={() => this.updateCourseClicked(course.id)}>Update</button></td>
                                             <td><button className="btn btn-warning" onClick={() => this.deleteCourseClicked(course.id)}>Delete</button></td>
+                                            
                                         </tr>
                                 )
                             }
                         </tbody>
                     </table>
+                    
                     <div className="row">
                         <button className="btn btn-success" onClick={this.addCourseClicked}>Add</button>
                     </div>
